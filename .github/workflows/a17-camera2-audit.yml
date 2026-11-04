@@ -1,0 +1,19 @@
+name: Android 17 Camera2 historical-source audit
+
+on:
+  push:
+    branches:
+      - audit/a17-mondrian-camera2-20261104
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-source-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check historical Camera2 privacy and module rules
+        run: python3 tools/verify_a17_camera2_legacy.py
